@@ -4,8 +4,9 @@ import path from "path"
 import { fileURLToPath } from "url";
 import fs from "fs"
 import sharp from "sharp";
+import dotenv from "dotenv"
 
-
+dotenv.config({ path: __dirname+'/.env' });
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PORT = 8000;
@@ -22,33 +23,31 @@ const SERVER_URL = `http://localhost:${PORT}/`;
 // });
 
 const storage = multer.memoryStorage();
-
 const upload = multer({ storage: storage });
-
 const app = express();
 
 app.use(express.static('public'))
 
+
+
 app.get(`/`, (req, res)=>{
-  res.send("HELLO API WORKING")
-})
-
-app.get(`/single-image`,upload.single('image'), (req, res)=>{
-
   res.sendFile(path.join(__dirname, '/index.html'))
 })
 
 
+app.get(`/test`,upload.single('image'), (req, res)=>{
+  res.send("API IS WORKING!")
+})
 
 
 app.post(`/single-image`, upload.single('image'), async(req, res)=>{
-
-  console.log(req.file)
   fs.access("./public", (error) => {
     if (error) {
       fs.mkdirSync("./public");
     }
   });
+
+  if (!req.file) return res.json({ success: false, message: "There is no file" }).status(400)
   const { buffer, originalname } = req.file;
   const timestamp = Date.now()
   const ref = `${timestamp}-${originalname.split('.')[0]}.webp`;
@@ -58,10 +57,8 @@ app.post(`/single-image`, upload.single('image'), async(req, res)=>{
     .then(info => { console.log("Info: " + JSON.stringify(info, null, 2)) })
     .catch(err => { console.log("Error: " + err) });
   const link = `${SERVER_URL}${ref}`;
-  return res.json({ link });
+  return res.json({ link, MESSAGE:"SAVE THESE LINKS!" });
 })
-
-
 
 
 app.listen(PORT, ()=>{

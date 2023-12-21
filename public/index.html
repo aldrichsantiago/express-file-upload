@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Express File Upload</title>
+</head>
+<body>
+    <div >
+        <h1 class="my-3">Express File Upload</h1>
+        <form action="/single-image" method="post" enctype="multipart/form-data" class="flex flex-col">
+            <div class="flex">
+                <h3>FILE TYPE: </h3>
+                <div class="flex">
+                    <input type="radio" id="image" name="file_type" value="IMAGE" class="ml-3 mr-1">
+                    <label for="image" class="flex items-center">
+                        <svg class="radio-icon mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                        </svg>
+                        Image
+                    </label>
+                </div>
+                <div class="flex">
+                    <input type="radio" id="pdf" name="file_type" value="PDF" class="ml-3 mr-1">
+                    <label for="pdf" class="flex items-center">
+                        <svg class="radio-icon mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                        </svg>
+                        PDF
+                    </label>
+                </div>
+            </div>
+            
+            <br>
+
+            <div class="flex">
+                <h3>LOCATION: </h3>
+                <div class="flex items-center">
+                    <input type="radio" id="myServer" name="location" value="myServer" class="ml-3 mr-1">
+                    <label for="myServer" class="flex items-center">
+                        <svg class="radio-icon mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3m3 3a3 3 0 1 0 0 6h13.5a3 3 0 1 0 0-6m-16.5-3a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3m-19.5 0a4.5 4.5 0 0 1 .9-2.7L5.737 5.1a3.375 3.375 0 0 1 2.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 0 1 .9 2.7m0 0a3 3 0 0 1-3 3m0 3h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Zm-3 6h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Z" />
+                        </svg>
+                          Local Server
+                    </label>
+                </div>
+                <div class="flex items-center">
+                    <input type="radio" id="firebase" name="location" value="60" class="ml-3 mr-1">
+                    <label for="firebase" class="flex items-center" >
+                        <svg class="radio-icon mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z" />
+                        </svg>
+                        Firebase
+                    </label>
+                </div>
+            </div>
+
+            
+            <br>  
+            
+
+            <label for="image">Select an image file: </label>
+            <input type="file" name="image" accept="image/png, image/jpeg">
+            <button type="submit" class="btn btn-primary">UPLOAD</button>
+        </form>
+    </div>
+    <script src="./main.js"></script>
+</body>
+</html>
